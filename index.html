@@ -3,66 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vibemart - Beta Launch August 1, 2025</title>
+    <title>VibeMart - Beta Launch August 1, 2025</title>
+    <meta name="description" content="VibeMart - Marketplace for fun, wholesome, and social experiences. Beta launching August 1, 2025.">
     <style>
+        * {
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Arial', 'Helvetica Neue', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #FFFFFF;
             color: #333333;
             overflow-x: hidden;
             line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
+        
         nav {
             position: sticky;
             top: 0;
-            background: rgba(74, 20, 140, 0.9);
+            background: rgba(74, 20, 140, 0.95);
             color: #FFFFFF;
-            padding: 10px 20px;
+            padding: clamp(8px, 2vw, 15px) clamp(15px, 4vw, 20px);
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            min-height: 60px;
         }
+        
         .logo {
             margin: 0;
-            font-size: 2em;
+            font-size: clamp(1.2em, 5vw, 2em);
             font-weight: 800;
-            letter-spacing: 2px;
+            letter-spacing: clamp(1px, 0.5vw, 2px);
             color: #FFFFFF;
             text-shadow: 0 0 5px rgba(74, 20, 140, 0.5);
+            flex-shrink: 0;
         }
+        
         .signup-button {
-            padding: 10px 20px;
+            padding: clamp(8px, 2vw, 10px) clamp(16px, 4vw, 20px);
             background: #4A148C;
             color: #FFFFFF;
             border: none;
             border-radius: 5px;
-            font-size: 1em;
+            font-size: clamp(0.85em, 2.5vw, 1em);
             font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 44px;
         }
-        .signup-button:hover {
+        
+        .signup-button:hover,
+        .signup-button:focus {
             background: #3D116F;
             transform: scale(1.05);
+            outline: 2px solid #FFFFFF;
+            outline-offset: 2px;
         }
+        
         .hero {
             position: relative;
-            height: 600px;
+            height: clamp(300px, 50vh, 600px);
             background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
             background-size: 300% 300%;
-            animation: gradientShift 8s ease infinite, particles 20s linear infinite;
+            animation: gradientShift 8s ease infinite;
             overflow: hidden;
+            will-change: background-position;
         }
+        
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+        
         .hero::before {
             content: '';
             position: absolute;
@@ -75,11 +101,14 @@
                 radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
             animation: float 6s ease-in-out infinite;
+            will-change: transform;
         }
+        
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
+        
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -88,6 +117,7 @@
             height: 100%;
             background: linear-gradient(45deg, rgba(74, 20, 140, 0.3) 0%, rgba(171, 71, 188, 0.3) 100%);
         }
+        
         .hero-content {
             position: absolute;
             top: 50%;
@@ -95,14 +125,19 @@
             transform: translate(-50%, -50%);
             text-align: center;
             color: #FFFFFF;
-            padding: 40px;
+            padding: clamp(20px, 5vw, 40px);
             background: rgba(0, 0, 0, 0.4);
             border-radius: 20px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.3), 0 0 60px rgba(74, 20, 140, 0.4);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.2);
             animation: heroGlow 3s ease-in-out infinite alternate;
+            will-change: transform, box-shadow;
+            max-width: 90%;
+            width: 100%;
         }
+        
         @keyframes heroGlow {
             from { 
                 box-shadow: 0 0 30px rgba(0, 0, 0, 0.3), 0 0 60px rgba(74, 20, 140, 0.4);
@@ -113,8 +148,9 @@
                 transform: translate(-50%, -50%) scale(1.02);
             }
         }
+        
         .hero-content h2 {
-            font-size: 3em;
+            font-size: clamp(1.8em, 6vw, 3em);
             margin: 0 0 20px;
             font-weight: 900;
             text-shadow: 0 0 20px rgba(0, 0, 0, 0.8), 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -123,40 +159,50 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: textShimmer 2s ease-in-out infinite alternate;
+            line-height: 1.2;
         }
+        
         @keyframes textShimmer {
             0% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
             100% { text-shadow: 0 0 30px rgba(240, 147, 251, 0.8); }
         }
+        
         .hero-content p {
-            font-size: 1.6em;
+            font-size: clamp(1em, 3vw, 1.6em);
             margin: 0 0 30px;
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
             font-weight: 500;
             opacity: 0.95;
+            line-height: 1.4;
         }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px 20px;
+            padding: clamp(15px, 4vw, 20px);
+            width: 100%;
         }
+        
         .category {
-            margin-bottom: 33px;
+            margin-bottom: clamp(25px, 5vw, 33px);
         }
+        
         .category h2 {
-            font-size: 2em;
+            font-size: clamp(1.4em, 4vw, 2em);
             color: #4A148C;
             margin-bottom: 15px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: clamp(1px, 0.5vw, 2px);
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
+        
         .services {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: clamp(15px, 3vw, 20px);
             perspective: 1000px;
         }
+        
         .service-box {
             display: flex;
             flex-direction: column;
@@ -165,12 +211,14 @@
             background: #FFFFFF;
             border: 1px solid #E0E0E0;
             border-radius: 10px;
-            padding: 15px;
+            padding: clamp(12px, 3vw, 15px);
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             overflow: hidden;
             position: relative;
+            will-change: transform;
         }
+        
         .service-box::before {
             content: '';
             position: absolute;
@@ -181,26 +229,33 @@
             background: radial-gradient(circle, rgba(74, 20, 140, 0.1) 0%, transparent 50%);
             animation: glow 5s infinite;
             z-index: 0;
+            will-change: transform;
         }
+        
         @keyframes glow {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .service-box:hover {
+        
+        .service-box:hover,
+        .service-box:focus-within {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(74, 20, 140, 0.15);
         }
+        
         .service-box > * {
             position: relative;
             z-index: 1;
         }
+        
         .service-content {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
+        
         .service-icon {
-            font-size: 2.2em;
+            font-size: clamp(1.8em, 4vw, 2.2em);
             margin-bottom: 10px;
             color: #4A148C;
             transition: color 0.3s ease;
@@ -208,23 +263,28 @@
             display: block;
             text-align: center;
         }
+        
         .service-box:hover .service-icon {
             color: #AB47BC;
         }
+        
         .service-title {
-            font-size: 1.3em;
+            font-size: clamp(1.1em, 3vw, 1.3em);
             margin-bottom: 10px;
             color: #333333;
             font-weight: 600;
             text-transform: capitalize;
+            line-height: 1.3;
         }
+        
         .service-desc {
-            font-size: 0.9em;
+            font-size: clamp(0.85em, 2.5vw, 0.9em);
             margin-bottom: 15px;
             color: #666666;
             line-height: 1.4;
             flex-grow: 1;
         }
+        
         .service-actions {
             display: flex;
             justify-content: space-between;
@@ -233,364 +293,513 @@
             gap: 10px;
             padding-top: 10px;
             border-top: 1px solid #F0F0F0;
+            flex-wrap: wrap;
         }
+        
         .service-price {
             font-weight: bold;
             color: #4A148C;
-            font-size: 1em;
+            font-size: clamp(0.9em, 2.5vw, 1em);
             flex-shrink: 0;
         }
+        
         .button-group {
             display: flex;
             gap: 5px;
+            flex-shrink: 0;
         }
+        
         .buy-button, .sell-button {
-            padding: 8px 16px;
-            font-size: 0.85em;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            font-size: clamp(0.75em, 2vw, 0.85em);
             border-radius: 5px;
             cursor: pointer;
             transition: transform 0.2s ease, background-color 0.2s ease;
             border: none;
             font-weight: 600;
             flex-shrink: 0;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 44px;
+            min-width: 60px;
         }
+        
         .buy-button {
             background: #4A148C;
             color: #FFFFFF;
         }
-        .buy-button:hover {
+        
+        .buy-button:hover,
+        .buy-button:focus {
             background: #3D116F;
             transform: translateY(-1px);
+            outline: 2px solid #4A148C;
+            outline-offset: 2px;
         }
+        
         .sell-button {
             background: #E0E0E0;
             color: #333333;
         }
-        .sell-button:hover {
+        
+        .sell-button:hover,
+        .sell-button:focus {
             background: #BDBDBD;
             transform: translateY(-1px);
+            outline: 2px solid #666666;
+            outline-offset: 2px;
         }
+        
         .email-signup {
             max-width: 600px;
-            margin: 40px auto;
-            padding: 30px 25px;
+            margin: clamp(30px, 6vw, 40px) auto;
+            padding: clamp(20px, 5vw, 30px) clamp(15px, 4vw, 25px);
             background: linear-gradient(135deg, #4A148C 0%, #AB47BC 100%);
             border-radius: 15px;
             box-shadow: 0 8px 25px rgba(74, 20, 140, 0.25);
             text-align: center;
+            width: calc(100% - 30px);
         }
+        
         .email-signup .badge {
             display: inline-block;
             background: rgba(255, 255, 255, 0.9);
             color: #4A148C;
             padding: 6px 16px;
             border-radius: 20px;
-            font-size: 0.85em;
+            font-size: clamp(0.75em, 2vw, 0.85em);
             font-weight: 700;
             margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         }
+        
         .email-signup h3 {
-            font-size: 2em;
+            font-size: clamp(1.4em, 4vw, 2em);
             margin-bottom: 15px;
             color: #FFFFFF;
             font-weight: 700;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
         }
+        
         .email-signup p {
-            font-size: 1.1em;
+            font-size: clamp(0.9em, 2.5vw, 1.1em);
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 25px;
             line-height: 1.4;
         }
+        
         .email-signup .signup-button-container {
             display: flex;
             justify-content: center;
             align-items: center;
         }
+        
         .email-signup .google-forms-button {
-            padding: 12px 25px;
+            padding: clamp(10px, 3vw, 12px) clamp(20px, 5vw, 25px);
             background: #FFFFFF;
             color: #4A148C;
             border: none;
             border-radius: 25px;
-            font-size: 0.95em;
+            font-size: clamp(0.85em, 2.5vw, 0.95em);
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             white-space: nowrap;
             text-decoration: none;
             display: inline-block;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 44px;
         }
-        .email-signup .google-forms-button:hover {
+        
+        .email-signup .google-forms-button:hover,
+        .email-signup .google-forms-button:focus {
             background: #F8F8F8;
             transform: translateY(-1px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            outline: 2px solid #4A148C;
+            outline-offset: 2px;
         }
+        
         footer {
             background: #F5F5F5;
             color: #333333;
-            padding: 12px;
+            padding: clamp(15px, 3vw, 20px) 12px;
             text-align: center;
-            font-size: 0.9em;
+            font-size: clamp(0.8em, 2vw, 0.9em);
         }
+        
         footer a {
             color: #4A148C;
             text-decoration: none;
+            padding: 4px;
         }
-        footer a:hover {
+        
+        footer a:hover,
+        footer a:focus {
             text-decoration: underline;
+            outline: 2px solid #4A148C;
+            outline-offset: 2px;
         }
-        /* Responsive Design */
+        
+        /* Enhanced Mobile Optimizations */
         @media (max-width: 768px) {
-            .hero {
-                height: 400px;
-            }
-            .hero-content h2 {
-                font-size: 2em;
-            }
-            .hero-content p {
-                font-size: 1.2em;
-            }
-            .hero-content {
-                padding: 25px;
-            }
-            .email-signup {
-                padding: 25px 20px;
-                margin: 30px auto;
-            }
-            .email-signup h3 {
-                font-size: 1.6em;
-            }
-            .email-signup p {
-                font-size: 1em;
-            }
-            .email-signup .google-forms-button {
-                padding: 12px 25px;
-                font-size: 0.95em;
-            }
-            .service-box {
-                width: 100%;
-                min-height: auto;
-            }
-            .category h2 {
-                font-size: 1.6em;
-            }
             nav {
-                flex-direction: column;
-                padding: 6px;
+                padding: 12px 15px;
+                min-height: 50px;
+                flex-wrap: wrap;
+                gap: 10px;
             }
+            
+            .logo {
+                order: 1;
+                flex: 1;
+            }
+            
             .signup-button {
-                margin-top: 6px;
+                order: 2;
+                flex-shrink: 0;
+            }
+            
+            .services {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .service-actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            
+            .service-price {
+                text-align: center;
+                margin-bottom: 5px;
+            }
+            
+            .button-group {
+                justify-content: center;
+                width: 100%;
+            }
+            
+            .buy-button, .sell-button {
+                flex: 1;
+                min-width: 80px;
+                max-width: 120px;
+            }
+            
+            .hero-content {
+                padding: 20px 15px;
             }
         }
-        /* Scroll to Sign-up Functionality */
-        .signup-button, .buy-button, .sell-button {
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .email-signup {
+                margin: 20px auto;
+                width: calc(100% - 20px);
+                padding: 20px 15px;
+            }
+            
+            .service-box {
+                padding: 12px;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .logo {
+                font-size: 1.1em;
+                letter-spacing: 1px;
+            }
+            
+            .signup-button {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+        }
+        
+        /* Accessibility Improvements */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        @media (prefers-contrast: high) {
+            .service-box {
+                border: 2px solid #333;
+            }
+            
+            .buy-button, .sell-button {
+                border: 2px solid currentColor;
+            }
+        }
+        
+        /* Focus styles for accessibility */
+        *:focus {
+            outline: 2px solid #4A148C;
+            outline-offset: 2px;
+        }
+        
+        /* Scroll behavior */
+        html {
             scroll-behavior: smooth;
         }
-        .signup-button:hover {
-            background: #3D116F;
-        }
-        .signup-button:active {
-            scroll-behavior: smooth;
-            scroll-margin-top: 60px; /* Adjust for nav height */
+        
+        /* Print styles */
+        @media print {
+            .hero::before,
+            .service-box::before {
+                display: none;
+            }
+            
+            .hero {
+                background: #4A148C;
+                color: white;
+            }
         }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const signupButton = document.querySelector('.signup-button');
-            const emailSignup = document.querySelector('.email-signup');
-            const buyButtons = document.querySelectorAll('.buy-button');
-            const sellButtons = document.querySelectorAll('.sell-button');
-            
-            // Function to scroll to signup section
-            function scrollToSignup(e) {
-                e.preventDefault();
-                emailSignup.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-            
-            // Add click event to nav signup button
-            signupButton.addEventListener('click', scrollToSignup);
-            
-            // Add click event to all buy buttons
-            buyButtons.forEach(button => {
-                button.addEventListener('click', scrollToSignup);
-            });
-            
-            // Add click event to all sell buttons
-            sellButtons.forEach(button => {
-                button.addEventListener('click', scrollToSignup);
-            });
-        });
-    </script>
 </head>
 <body>
-    <nav>
+    <nav role="navigation" aria-label="Main navigation">
         <h1 class="logo">VibeMart</h1>
-        <button class="signup-button">Sign Up</button>
+        <button class="signup-button" aria-label="Sign up for VibeMart">Sign Up</button>
     </nav>
-    <div class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h2>Unleash The Fun!</h2>
-            <p>Explore a marketplace for fun, wholesome, and social experiences!</p>
-        </div>
-    </div>
-    <div class="container">
-        <div class="category">
-            <h2>Social Fun</h2>
-            <div class="services">
-                <div class="service-box">
-                    <div class="service-content">
-                        <div class="service-icon">🎉</div>
-                        <div class="service-title">Pranks on Friends/Family</div>
-                        <div class="service-desc">In-person or virtual pranks (including prank calls) to surprise your loved ones, streamed or recorded for memories.</div>
-                    </div>
-                    <div class="service-actions">
-                        <div class="service-price">Starting at $10</div>
-                        <div class="button-group">
-                            <button class="buy-button">Buy</button>
-                            <button class="sell-button">Sell</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="service-box">
-                    <div class="service-content">
-                        <div class="service-icon">🎵</div>
-                        <div class="service-title">Surprise Musical Serenade for Your Loved One</div>
-                        <div class="service-desc">Personalized musical performances to express your love and create magical moments.</div>
-                    </div>
-                    <div class="service-actions">
-                        <div class="service-price">Starting at $40</div>
-                        <div class="button-group">
-                            <button class="buy-button">Buy</button>
-                            <button class="sell-button">Sell</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="service-box">
-                    <div class="service-content">
-                        <div class="service-icon">✨</div>
-                        <div class="service-title">Create Any Fun Service You Can Think Of</div>
-                        <div class="service-desc">Imagine and offer unique fun experiences tailored to your creativity.</div>
-                    </div>
-                    <div class="service-actions">
-                        <div class="service-price">Starting at $25</div>
-                        <div class="button-group">
-                            <button class="buy-button">Buy</button>
-                            <button class="sell-button">Sell</button>
-                        </div>
-                    </div>
-                </div>
+    
+    <main>
+        <section class="hero" aria-label="Hero section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h2>Unleash The Fun!</h2>
+                <p>Explore a marketplace for fun, wholesome, and social experiences!</p>
             </div>
+        </section>
+        
+        <div class="container">
+            <section class="category">
+                <h2>Social Fun</h2>
+                <div class="services" role="group" aria-label="Social Fun services">
+                    <article class="service-box">
+                        <div class="service-content">
+                            <div class="service-icon" aria-hidden="true">🎉</div>
+                            <h3 class="service-title">Pranks on Friends/Family</h3>
+                            <p class="service-desc">In-person or virtual pranks (including prank calls) to surprise your loved ones, streamed or recorded for memories.</p>
+                        </div>
+                        <div class="service-actions">
+                            <div class="service-price">Starting at $10</div>
+                            <div class="button-group">
+                                <button class="buy-button" aria-label="Buy prank service">Buy</button>
+                                <button class="sell-button" aria-label="Sell prank service">Sell</button>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="service-box">
+                        <div class="service-content">
+                            <div class="service-icon" aria-hidden="true">🎵</div>
+                            <h3 class="service-title">Surprise Musical Serenade for Your Loved One</h3>
+                            <p class="service-desc">Personalized musical performances to express your love and create magical moments.</p>
+                        </div>
+                        <div class="service-actions">
+                            <div class="service-price">Starting at $40</div>
+                            <div class="button-group">
+                                <button class="buy-button" aria-label="Buy musical serenade service">Buy</button>
+                                <button class="sell-button" aria-label="Sell musical serenade service">Sell</button>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="service-box">
+                        <div class="service-content">
+                            <div class="service-icon" aria-hidden="true">✨</div>
+                            <h3 class="service-title">Create Any Fun Service You Can Think Of</h3>
+                            <p class="service-desc">Imagine and offer unique fun experiences tailored to your creativity.</p>
+                        </div>
+                        <div class="service-actions">
+                            <div class="service-price">Starting at $25</div>
+                            <div class="button-group">
+                                <button class="buy-button" aria-label="Buy custom fun service">Buy</button>
+                                <button class="sell-button" aria-label="Sell custom fun service">Sell</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            
+            <section class="category">
+                <h2>Social Good</h2>
+                <div class="services" role="group" aria-label="Social Good services">
+                    <article class="service-box">
+                        <div class="service-content">
+                            <div class="service-icon" aria-hidden="true">🍎</div>
+                            <h3 class="service-title">Give Meal to Homeless</h3>
+                            <p class="service-desc">Healthy meals for those in need, streamed or recorded.</p>
+                        </div>
+                        <div class="service-actions">
+                            <div class="service-price">Starting at $20</div>
+                            <div class="button-group">
+                                <button class="buy-button" aria-label="Buy meal for homeless service">Buy</button>
+                                <button class="sell-button" aria-label="Sell meal for homeless service">Sell</button>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="service-box">
+                        <div class="service-content">
+                            <div class="service-icon" aria-hidden="true">❤️</div>
+                            <h3 class="service-title">Random Act of Kindness</h3>
+                            <p class="service-desc">Surprise acts of kindness, recorded to share positivity.</p>
+                        </div>
+                        <div class="service-actions">
+                            <div class="service-price">Starting at $15</div>
+                            <div class="button-group">
+                                <button class="buy-button" aria-label="Buy random act of kindness service">Buy</button>
+                                <button class="sell-button" aria-label="Sell random act of kindness service">Sell</button>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="service-box">
+                        <div class="service-content">
+                            <div class="service-icon" aria-hidden="true">🌍</div>
+                            <h3 class="service-title">Create Any Social Good Service You Can Think Of</h3>
+                            <p class="service-desc">Design your own social impact service to help the community.</p>
+                        </div>
+                        <div class="service-actions">
+                            <div class="service-price">Starting at $25</div>
+                            <div class="button-group">
+                                <button class="buy-button" aria-label="Buy custom social good service">Buy</button>
+                                <button class="sell-button" aria-label="Sell custom social good service">Sell</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            
+            <section class="category">
+                <h2>Social Interactions</h2>
+                <div class="services" role="group" aria-label="Social Interactions services">
+                    <article class="service-box">
+                        <div class="service-content">
+                            <div class="service-icon" aria-hidden="true">👫</div>
+                            <h3 class="service-title">Rent a Wing Woman/Man</h3>
+                            <p class="service-desc">Companions for events, streamed or recorded if requested.</p>
+                        </div>
+                        <div class="service-actions">
+                            <div class="service-price">Starting at $30</div>
+                            <div class="button-group">
+                                <button class="buy-button" aria-label="Buy wing person service">Buy</button>
+                                <button class="sell-button" aria-label="Sell wing person service">Sell</button>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="service-box">
+                        <div class="service-content">
+                            <div class="service-icon" aria-hidden="true">🎮</div>
+                            <h3 class="service-title">Gaming Buddy/Carry Service</h3>
+                            <p class="service-desc">Experienced gamers help you level up, complete missions, or just hang out and game together.</p>
+                        </div>
+                        <div class="service-actions">
+                            <div class="service-price">Starting at $20</div>
+                            <div class="button-group">
+                                <button class="buy-button" aria-label="Buy gaming buddy service">Buy</button>
+                                <button class="sell-button" aria-label="Sell gaming buddy service">Sell</button>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="service-box">
+                        <div class="service-content">
+                            <div class="service-icon" aria-hidden="true">🤝</div>
+                            <h3 class="service-title">Create Any Social Interaction Service You Can Think Of</h3>
+                            <p class="service-desc">Craft personalized social interaction experiences for connection.</p>
+                        </div>
+                        <div class="service-actions">
+                            <div class="service-price">Starting at $25</div>
+                            <div class="button-group">
+                                <button class="buy-button" aria-label="Buy custom social interaction service">Buy</button>
+                                <button class="sell-button" aria-label="Sell custom social interaction service">Sell</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
         </div>
-        <div class="category">
-            <h2>Social Good</h2>
-            <div class="services">
-                <div class="service-box">
-                    <div class="service-content">
-                        <div class="service-icon">🍎</div>
-                        <div class="service-title">Give Meal to Homeless</div>
-                        <div class="service-desc">Healthy meals for those in need, streamed or recorded.</div>
-                    </div>
-                    <div class="service-actions">
-                        <div class="service-price">Starting at $20</div>
-                        <div class="button-group">
-                            <button class="buy-button">Buy</button>
-                            <button class="sell-button">Sell</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="service-box">
-                    <div class="service-content">
-                        <div class="service-icon">❤️</div>
-                        <div class="service-title">Random Act of Kindness</div>
-                        <div class="service-desc">Surprise acts of kindness, recorded to share positivity.</div>
-                    </div>
-                    <div class="service-actions">
-                        <div class="service-price">Starting at $15</div>
-                        <div class="button-group">
-                            <button class="buy-button">Buy</button>
-                            <button class="sell-button">Sell</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="service-box">
-                    <div class="service-content">
-                        <div class="service-icon">🌍</div>
-                        <div class="service-title">Create Any Social Good Service You Can Think Of</div>
-                        <div class="service-desc">Design your own social impact service to help the community.</div>
-                    </div>
-                    <div class="service-actions">
-                        <div class="service-price">Starting at $25</div>
-                        <div class="button-group">
-                            <button class="buy-button">Buy</button>
-                            <button class="sell-button">Sell</button>
-                        </div>
-                    </div>
-                </div>
+        
+        <section class="email-signup" aria-label="Email signup">
+            <div class="badge">Beta Launch • August 1st</div>
+            <h3>Join VibeMart Today!</h3>
+            <p>Sign up for the email list and be notified of the beta launch on August 1st to begin buying/selling!</p>
+            <div class="signup-button-container">
+                <a href="https://forms.gle/6rfjvvJ5eRg2jGCs7" target="_blank" rel="noopener noreferrer" class="google-forms-button" aria-label="Sign up for VibeMart email notifications">Sign Up</a>
             </div>
-        </div>
-        <div class="category">
-            <h2>Social Interactions</h2>
-            <div class="services">
-                <div class="service-box">
-                    <div class="service-content">
-                        <div class="service-icon">👫</div>
-                        <div class="service-title">Rent a Wing Woman/Man</div>
-                        <div class="service-desc">Companions for events, streamed or recorded if requested.</div>
-                    </div>
-                    <div class="service-actions">
-                        <div class="service-price">Starting at $30</div>
-                        <div class="button-group">
-                            <button class="buy-button">Buy</button>
-                            <button class="sell-button">Sell</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="service-box">
-                    <div class="service-content">
-                        <div class="service-icon">🎮</div>
-                        <div class="service-title">Gaming Buddy/Carry Service</div>
-                        <div class="service-desc">Experienced gamers help you level up, complete missions, or just hang out and game together.</div>
-                    </div>
-                    <div class="service-actions">
-                        <div class="service-price">Starting at $20</div>
-                        <div class="button-group">
-                            <button class="buy-button">Buy</button>
-                            <button class="sell-button">Sell</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="service-box">
-                    <div class="service-content">
-                        <div class="service-icon">🤝</div>
-                        <div class="service-title">Create Any Social Interaction Service You Can Think Of</div>
-                        <div class="service-desc">Craft personalized social interaction experiences for connection.</div>
-                    </div>
-                    <div class="service-actions">
-                        <div class="service-price">Starting at $25</div>
-                        <div class="button-group">
-                            <button class="buy-button">Buy</button>
-                            <button class="sell-button">Sell</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="email-signup">
-        <div class="badge">Beta Launch • August 1st</div>
-        <h3>Join VibeMart Today!</h3>
-        <p>Sign up for the email list and be notified of the beta launch on August 1st to begin buying/selling!</p>
-        <div class="signup-button-container">
-            <a href="https://forms.gle/6rfjvvJ5eRg2jGCs7" target="_blank" class="google-forms-button">Sign Up</a>
-        </div>
-    </div>
-    <footer>
-        © 2025 VibeMart. All rights reserved. | <a href="#">Terms</a> | <a href="#">Privacy</a>
+        </section>
+    </main>
+    
+    <footer role="contentinfo">
+        &copy; 2025 VibeMart. All rights reserved. | <a href="#" aria-label="Terms of service">Terms</a> | <a href="#" aria-label="Privacy policy">Privacy</a>
     </footer>
+
+    <script>
+        (function() {
+            'use strict';
+            
+            function scrollToSignup(e) {
+                e.preventDefault();
+                const emailSignup = document.querySelector('.email-signup');
+                if (emailSignup) {
+                    emailSignup.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }
+            }
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                // Get all buttons that should scroll to signup
+                const scrollButtons = document.querySelectorAll('.signup-button, .buy-button, .sell-button');
+                
+                // Add event listeners with proper error handling
+                scrollButtons.forEach(function(button) {
+                    button.addEventListener('click', scrollToSignup);
+                });
+                
+                // Performance optimization: Intersection Observer for animations
+                if ('IntersectionObserver' in window) {
+                    const observerOptions = {
+                        threshold: 0.1,
+                        rootMargin: '0px 0px -50px 0px'
+                    };
+                    
+                    const observer = new IntersectionObserver(function(entries) {
+                        entries.forEach(function(entry) {
+                            if (entry.isIntersecting) {
+                                entry.target.style.opacity = '1';
+                                entry.target.style.transform = 'translateY(0)';
+                            }
+                        });
+                    }, observerOptions);
+                    
+                    // Observe service boxes for animation
+                    const serviceBoxes = document.querySelectorAll('.service-box');
+                    serviceBoxes.forEach(function(box) {
+                        box.style.opacity = '0';
+                        box.style.transform = 'translateY(20px)';
+                        box.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        observer.observe(box);
+                    });
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
